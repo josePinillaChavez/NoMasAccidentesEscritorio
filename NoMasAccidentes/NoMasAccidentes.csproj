@@ -78,34 +78,76 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlador\AccidenteController.cs" />
+    <Compile Include="Controlador\CasosController.cs" />
     <Compile Include="Controlador\ContratoController.cs" />
+    <Compile Include="Controlador\CursoController.cs" />
+    <Compile Include="Controlador\DocTributarioController.cs" />
     <Compile Include="Controlador\EmpresaController.cs" />
+    <Compile Include="Controlador\PerfilController.cs" />
     <Compile Include="Controlador\ProfesionalController.cs" />
     <Compile Include="Controlador\RubroController.cs" />
+    <Compile Include="Controlador\TipoCasoController.cs" />
     <Compile Include="Controlador\UsuarioController.cs" />
+    <Compile Include="Controlador\VisitaController.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\AccidenteModel.cs" />
+    <Compile Include="Modelo\CasoModel.cs" />
     <Compile Include="Modelo\ContratoModel.cs" />
+    <Compile Include="Modelo\CursoModel.cs" />
+    <Compile Include="Modelo\DocTributarioModel.cs" />
     <Compile Include="Modelo\EmpresaModel.cs" />
     <Compile Include="Modelo\ProfesionalModel.cs" />
     <Compile Include="Modelo\UsuarioModel.cs" />
+    <Compile Include="Modelo\VisitaModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vista\Administrador\ContratoAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Administrador\ContratoAdministrador.Designer.cs">
+      <DependentUpon>ContratoAdministrador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Administrador\EmpresaAdministrador.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vista\Administrador\EmpresaAdministrador.Designer.cs">
       <DependentUpon>EmpresaAdministrador.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vista\Administrador\FormAdministradorUsuario.cs">
+    <Compile Include="Vista\Administrador\FormAccidenteAdministrador.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vista\Administrador\FormAdministradorUsuario.Designer.cs">
-      <DependentUpon>FormAdministradorUsuario.cs</DependentUpon>
+    <Compile Include="Vista\Administrador\FormAccidenteAdministrador.Designer.cs">
+      <DependentUpon>FormAccidenteAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Administrador\FormCasoAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Administrador\FormCasoAdministrador.Designer.cs">
+      <DependentUpon>FormCasoAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Administrador\FormCursoAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Administrador\FormCursoAdministrador.Designer.cs">
+      <DependentUpon>FormCursoAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Administrador\FormUsuarioAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Administrador\FormUsuarioAdministrador.Designer.cs">
+      <DependentUpon>FormUsuarioAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Administrador\FormVisitaAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Administrador\FormVisitaAdministrador.Designer.cs">
+      <DependentUpon>FormVisitaAdministrador.cs</DependentUpon>
     </Compile>
     <Compile Include="Vista\Administrador\HomeAdministrador.cs">
       <SubType>Form</SubType>
@@ -131,8 +173,26 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Vista\Administrador\ContratoAdministrador.resx">
+      <DependentUpon>ContratoAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\Administrador\EmpresaAdministrador.resx">
       <DependentUpon>EmpresaAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Administrador\FormAccidenteAdministrador.resx">
+      <DependentUpon>FormAccidenteAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Administrador\FormCasoAdministrador.resx">
+      <DependentUpon>FormCasoAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Administrador\FormCursoAdministrador.resx">
+      <DependentUpon>FormCursoAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Administrador\FormUsuarioAdministrador.resx">
+      <DependentUpon>FormUsuarioAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Administrador\FormVisitaAdministrador.resx">
+      <DependentUpon>FormVisitaAdministrador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\Administrador\HomeAdministrador.resx">
       <DependentUpon>HomeAdministrador.cs</DependentUpon>

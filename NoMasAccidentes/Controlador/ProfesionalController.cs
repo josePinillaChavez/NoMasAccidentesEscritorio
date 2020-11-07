@@ -1,10 +1,13 @@
-﻿using NoMasAccidentes.Modelo;
+﻿using Newtonsoft.Json;
+using NoMasAccidentes.Modelo;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,133 +18,175 @@ namespace NoMasAccidentes.Controlador
 
 		public DataTable ListarProfesional()
 		{
-			DataSet dti = new DataSet();
 			DataTable dt = new DataTable();
-			try
-			{
-				ProfesionalModel profesional = new ProfesionalModel();
-				dt=profesional.ListarEmpresa();
-			}
-			catch (Exception ex)
-			{
 
+
+			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
+			//var url = $"https://localhost:44348/api/Empresa/crear";
+			urlBase = string.Format(urlBase, "api", "profesional", "listar");
+
+
+
+			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlBase);
+			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+			using (Stream stream = response.GetResponseStream())
+			using (StreamReader reader = new StreamReader(stream))
+			{
+				var json = reader.ReadToEnd();
+
+				var a = JsonConvert.DeserializeObject<List<ProfesioanlReturn>>(json);
+				dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
 			}
+
+
+
 			return dt;
 		}
 
 
 
-		public DataTable ActualizarEmpresa(int idEmpresa, int idRubro, string rut, string dv, string nombre, int telefono, string email)
+		public bool ActualizarProfesional(int idProfesional, string nombre, string apellidoPaterno, string apellidoMaterno, string rut, string dvRut, int telefono, string email)
 		{
-			DataSet dti = new DataSet();
-			DataTable dt = new DataTable();
+			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
+			//var url = $"https://localhost:44348/api/Empresa/crear";
+			urlBase = string.Format(urlBase, "api", "profesional", "actualizar");
+			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+
+
+			string json = $"{{\"idProfesional\":\"{idProfesional}\",\"nombre\":\"{nombre}\",\"apellidoPaterno\":\"{apellidoPaterno}\",\"apellidoMaterno\":\"{apellidoMaterno}\",\"rut\":\"{rut}\",\"dvRut\":\"{dvRut}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
+
+
+
+			request.Method = "POST";
+			request.ContentType = "application/json";
+			request.Accept = "application/json";
+
+			using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+			{
+				streamWriter.Write(json);
+				streamWriter.Flush();
+				streamWriter.Close();
+			}
+
 			try
 			{
-				using (OracleConnection cn = new OracleConnection(ConfigurationManager.AppSettings["Bd"].ToString()))
+				using (WebResponse response = request.GetResponse())
 				{
-					OracleDataAdapter da = new OracleDataAdapter();
-					OracleCommand cmd = new OracleCommand();
-					cmd.Connection = cn;
-					cmd.InitialLONGFetchSize = 1000;
-					cmd.CommandText = "SP_UPDATE_EMOPRESA";
-					cmd.CommandType = CommandType.StoredProcedure;
-					cmd.Parameters.Add("IN_ID_EMPRESA", OracleDbType.Int32).Value = idEmpresa;
-					cmd.Parameters.Add("IN_ID_RUBRO", OracleDbType.Int32).Value = idRubro;
-					cmd.Parameters.Add("IN_RUT", OracleDbType.NVarchar2).Value = rut;
-					cmd.Parameters.Add("IN_DV_RUT", OracleDbType.NVarchar2).Value = dv;
-					cmd.Parameters.Add("IN_NOMBRE", OracleDbType.NVarchar2).Value = nombre;
-					cmd.Parameters.Add("IN_TELEFONO", OracleDbType.Int32).Value = telefono;
-					cmd.Parameters.Add("IN_EMAIL", OracleDbType.NVarchar2).Value = email;
-					cmd.Parameters.Add("OUT_ESTADO", OracleDbType.Int32).Direction = ParameterDirection.Output;
-					cmd.Parameters.Add("OUT_ID_SALIDA", OracleDbType.Int32).Direction = ParameterDirection.Output;
-					da.SelectCommand = cmd;
-					da.Fill(dt);
+					using (Stream strReader = response.GetResponseStream())
+					{
+						if (strReader == null) return false;
+						using (StreamReader objReader = new StreamReader(strReader))
+						{
+							string responseBody = objReader.ReadToEnd();
+							// Do something with responseBody
+							Console.WriteLine(responseBody);
+						}
+					}
 				}
 			}
-			catch (Exception ex)
+			catch (WebException ex)
 			{
-
+				return false;
+				// Handle error
 			}
 
-
-
-			return dt;
+			return true;
 
 		}
 
 
 
-		public DataTable crearEmpresa(int idRubro, string rut, string dv, string nombre, int telefono, string email)
+		public bool crearProfesional(string nombre, string apellidoPaterno, string apellidoMaterno, string rut, string dvRut, int telefono, string email)
 		{
-			DataSet dti = new DataSet();
-			DataTable dt = new DataTable();
+			bool ok = false;
+			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
+			//var url = $"https://localhost:44348/api/Empresa/crear";
+			urlBase = string.Format(urlBase, "api", "profesional", "crear");
+			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+
+			string json = $"{{\"nombre\":\"{nombre}\",\"apellidoPaterno\":\"{apellidoPaterno}\",\"apellidoMaterno\":\"{apellidoMaterno}\",\"rut\":\"{rut}\",\"dvRut\":\"{dvRut}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\",\"vigente\":\"{1}\"}}";
+
+
+
+
+			request.Method = "POST";
+			request.ContentType = "application/json";
+			request.Accept = "application/json";
+
+			using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+			{
+				streamWriter.Write(json);
+				streamWriter.Flush();
+				streamWriter.Close();
+			}
+
 			try
 			{
-				using (OracleConnection cn = new OracleConnection(ConfigurationManager.AppSettings["Bd"].ToString()))
+				using (WebResponse response = request.GetResponse())
 				{
-					OracleDataAdapter da = new OracleDataAdapter();
-					OracleCommand cmd = new OracleCommand();
-					cmd.Connection = cn;
-					cmd.InitialLONGFetchSize = 1000;
-					cmd.CommandText = "SP_CREAR_EMPRESA";
-					cmd.CommandType = CommandType.StoredProcedure;
-					cmd.Parameters.Add("IN_TBL_RUBRO_ID_RUBRO", OracleDbType.Int32).Value = idRubro;
-					cmd.Parameters.Add("IN_RUT", OracleDbType.NVarchar2).Value = rut;
-					cmd.Parameters.Add("IN_DV_RUT", OracleDbType.NVarchar2).Value = dv;
-					cmd.Parameters.Add("IN_NOMBRE", OracleDbType.NVarchar2).Value = nombre;
-					cmd.Parameters.Add("IN_TELEFONO", OracleDbType.Int32).Value = telefono;
-					cmd.Parameters.Add("IN_EMAIL", OracleDbType.NVarchar2).Value = email;
-					cmd.Parameters.Add("IN_VIGENTE", OracleDbType.Char).Value = "1";
-					cmd.Parameters.Add("OUT_ESTADO", OracleDbType.Int32).Direction = ParameterDirection.Output;
-					cmd.Parameters.Add("OUT_ID_SALIDA", OracleDbType.Int32).Direction = ParameterDirection.Output;
-
-
-
-					da.SelectCommand = cmd;
-					da.Fill(dt);
+					using (Stream strReader = response.GetResponseStream())
+					{
+						if (strReader == null) return false;
+						using (StreamReader objReader = new StreamReader(strReader))
+						{
+							string responseBody = objReader.ReadToEnd();
+							// Do something with responseBody
+							ok = true;
+						}
+					}
 				}
 			}
-			catch (Exception ex)
+			catch (WebException ex)
 			{
-
+				return false;
+				// Handle error
 			}
-
-
-
-			return dt;
+			return true;
 
 		}
 
-		public DataTable eliminarEmpresa(int idEmpresa)
+		public bool eliminarProfesional(int idProfesional)
 		{
-			DataSet dti = new DataSet();
-			DataTable dt = new DataTable();
+			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
+			urlBase = string.Format(urlBase, "api", "profesional", "eliminar");
+			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+
+
+
+			string json = $"{{\"idProfesional\":\"{idProfesional}\"}}";
+			request.Method = "POST";
+			request.ContentType = "application/json";
+			request.Accept = "application/json";
+
+			using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+			{
+				streamWriter.Write(json);
+				streamWriter.Flush();
+				streamWriter.Close();
+			}
+
 			try
 			{
-				using (OracleConnection cn = new OracleConnection(ConfigurationManager.AppSettings["Bd"].ToString()))
+				using (WebResponse response = request.GetResponse())
 				{
-					OracleDataAdapter da = new OracleDataAdapter();
-					OracleCommand cmd = new OracleCommand();
-					cmd.Connection = cn;
-					cmd.InitialLONGFetchSize = 1000;
-					cmd.CommandText = "SP_DEL_EMPRESA";
-					cmd.CommandType = CommandType.StoredProcedure;
-					cmd.Parameters.Add("IN_ID_EMPRESA", OracleDbType.Int32).Value = idEmpresa;
-					cmd.Parameters.Add("OUT_ESTADO", OracleDbType.Int32).Direction = ParameterDirection.Output;
-					cmd.Parameters.Add("OUT_ID_SALIDA", OracleDbType.Int32).Direction = ParameterDirection.Output;
-					da.SelectCommand = cmd;
-					da.Fill(dt);
+					using (Stream strReader = response.GetResponseStream())
+					{
+						if (strReader == null) return false;
+						using (StreamReader objReader = new StreamReader(strReader))
+						{
+							string responseBody = objReader.ReadToEnd();
+							// Do something with responseBody
+							Console.WriteLine(responseBody);
+						}
+					}
 				}
 			}
-			catch (Exception ex)
+			catch (WebException ex)
 			{
-
+				return false;
+				// Handle error
 			}
-
-
-
-			return dt;
-
+			return true;
 		}
 	}
 }

@@ -20,7 +20,7 @@ namespace NoMasAccidentes.Modelo
 		public string descripcion { get; set; }
 	}
 
-	public class Root
+	public class RootEmpresa
 	{
 		public List<Empresa> MyArray { get; set; }
 	}

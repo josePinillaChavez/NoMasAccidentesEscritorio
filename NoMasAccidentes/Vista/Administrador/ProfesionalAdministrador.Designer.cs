@@ -128,6 +128,7 @@
 			// txtRutProfesional
 			// 
 			this.txtRutProfesional.Location = new System.Drawing.Point(146, 121);
+			this.txtRutProfesional.MaxLength = 9;
 			this.txtRutProfesional.Name = "txtRutProfesional";
 			this.txtRutProfesional.Size = new System.Drawing.Size(100, 20);
 			this.txtRutProfesional.TabIndex = 32;
@@ -135,6 +136,7 @@
 			// txtDvProfesional
 			// 
 			this.txtDvProfesional.Location = new System.Drawing.Point(369, 124);
+			this.txtDvProfesional.MaxLength = 1;
 			this.txtDvProfesional.Name = "txtDvProfesional";
 			this.txtDvProfesional.Size = new System.Drawing.Size(100, 20);
 			this.txtDvProfesional.TabIndex = 31;
@@ -142,6 +144,7 @@
 			// txtNombreProfesional
 			// 
 			this.txtNombreProfesional.Location = new System.Drawing.Point(146, 45);
+			this.txtNombreProfesional.MaxLength = 30;
 			this.txtNombreProfesional.Name = "txtNombreProfesional";
 			this.txtNombreProfesional.Size = new System.Drawing.Size(100, 20);
 			this.txtNombreProfesional.TabIndex = 30;
@@ -149,6 +152,7 @@
 			// txtTelefonoProfesional
 			// 
 			this.txtTelefonoProfesional.Location = new System.Drawing.Point(146, 167);
+			this.txtTelefonoProfesional.MaxLength = 9;
 			this.txtTelefonoProfesional.Name = "txtTelefonoProfesional";
 			this.txtTelefonoProfesional.Size = new System.Drawing.Size(100, 20);
 			this.txtTelefonoProfesional.TabIndex = 29;
@@ -156,6 +160,7 @@
 			// txtEmailProfesional
 			// 
 			this.txtEmailProfesional.Location = new System.Drawing.Point(369, 170);
+			this.txtEmailProfesional.MaxLength = 30;
 			this.txtEmailProfesional.Name = "txtEmailProfesional";
 			this.txtEmailProfesional.Size = new System.Drawing.Size(100, 20);
 			this.txtEmailProfesional.TabIndex = 28;
@@ -183,6 +188,7 @@
 			this.btnCrearProfesional.TabIndex = 24;
 			this.btnCrearProfesional.Text = "Crear";
 			this.btnCrearProfesional.UseVisualStyleBackColor = true;
+			this.btnCrearProfesional.Click += new System.EventHandler(this.btnCrearProfesional_Click);
 			// 
 			// btnEliminarProfesional
 			// 
@@ -192,6 +198,7 @@
 			this.btnEliminarProfesional.TabIndex = 23;
 			this.btnEliminarProfesional.Text = "Eliminar";
 			this.btnEliminarProfesional.UseVisualStyleBackColor = true;
+			this.btnEliminarProfesional.Click += new System.EventHandler(this.btnEliminarProfesional_Click);
 			// 
 			// btnActualizarProfesional
 			// 
@@ -201,6 +208,7 @@
 			this.btnActualizarProfesional.TabIndex = 22;
 			this.btnActualizarProfesional.Text = "Actualizar";
 			this.btnActualizarProfesional.UseVisualStyleBackColor = true;
+			this.btnActualizarProfesional.Click += new System.EventHandler(this.btnActualizarProfesional_Click);
 			// 
 			// label9
 			// 
@@ -214,6 +222,7 @@
 			// txtApellidopaterno
 			// 
 			this.txtApellidopaterno.Location = new System.Drawing.Point(146, 85);
+			this.txtApellidopaterno.MaxLength = 30;
 			this.txtApellidopaterno.Name = "txtApellidopaterno";
 			this.txtApellidopaterno.Size = new System.Drawing.Size(100, 20);
 			this.txtApellidopaterno.TabIndex = 44;
@@ -221,6 +230,7 @@
 			// txtApellidoMaterno
 			// 
 			this.txtApellidoMaterno.Location = new System.Drawing.Point(369, 85);
+			this.txtApellidoMaterno.MaxLength = 30;
 			this.txtApellidoMaterno.Name = "txtApellidoMaterno";
 			this.txtApellidoMaterno.Size = new System.Drawing.Size(100, 20);
 			this.txtApellidoMaterno.TabIndex = 46;

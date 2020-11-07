@@ -32,7 +32,6 @@
 			this.btnEliminar = new System.Windows.Forms.Button();
 			this.btnCrear = new System.Windows.Forms.Button();
 			this.txtIdEmpresa = new System.Windows.Forms.TextBox();
-			this.txtRubroEmpresa = new System.Windows.Forms.TextBox();
 			this.txtEstadoEmpresa = new System.Windows.Forms.TextBox();
 			this.txtEmailEmpresa = new System.Windows.Forms.TextBox();
 			this.txtTelefonoEmpresa = new System.Windows.Forms.TextBox();
@@ -49,6 +48,7 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.btnVovler = new System.Windows.Forms.Button();
 			this.cmdRubro = new System.Windows.Forms.ComboBox();
+			this.txtRubroEmpresa = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// btnActualizar
@@ -89,13 +89,6 @@
 			this.txtIdEmpresa.Size = new System.Drawing.Size(100, 20);
 			this.txtIdEmpresa.TabIndex = 3;
 			// 
-			// txtRubroEmpresa
-			// 
-			this.txtRubroEmpresa.Location = new System.Drawing.Point(149, 256);
-			this.txtRubroEmpresa.Name = "txtRubroEmpresa";
-			this.txtRubroEmpresa.Size = new System.Drawing.Size(100, 20);
-			this.txtRubroEmpresa.TabIndex = 5;
-			// 
 			// txtEstadoEmpresa
 			// 
 			this.txtEstadoEmpresa.Location = new System.Drawing.Point(149, 225);
@@ -106,6 +99,7 @@
 			// txtEmailEmpresa
 			// 
 			this.txtEmailEmpresa.Location = new System.Drawing.Point(149, 189);
+			this.txtEmailEmpresa.MaxLength = 20;
 			this.txtEmailEmpresa.Name = "txtEmailEmpresa";
 			this.txtEmailEmpresa.Size = new System.Drawing.Size(100, 20);
 			this.txtEmailEmpresa.TabIndex = 7;
@@ -113,6 +107,7 @@
 			// txtTelefonoEmpresa
 			// 
 			this.txtTelefonoEmpresa.Location = new System.Drawing.Point(149, 145);
+			this.txtTelefonoEmpresa.MaxLength = 9;
 			this.txtTelefonoEmpresa.Name = "txtTelefonoEmpresa";
 			this.txtTelefonoEmpresa.Size = new System.Drawing.Size(100, 20);
 			this.txtTelefonoEmpresa.TabIndex = 8;
@@ -120,6 +115,7 @@
 			// txtNombreEmpresa
 			// 
 			this.txtNombreEmpresa.Location = new System.Drawing.Point(149, 108);
+			this.txtNombreEmpresa.MaxLength = 30;
 			this.txtNombreEmpresa.Name = "txtNombreEmpresa";
 			this.txtNombreEmpresa.Size = new System.Drawing.Size(100, 20);
 			this.txtNombreEmpresa.TabIndex = 9;
@@ -127,6 +123,7 @@
 			// txtDvEmpresa
 			// 
 			this.txtDvEmpresa.Location = new System.Drawing.Point(326, 72);
+			this.txtDvEmpresa.MaxLength = 1;
 			this.txtDvEmpresa.Name = "txtDvEmpresa";
 			this.txtDvEmpresa.Size = new System.Drawing.Size(100, 20);
 			this.txtDvEmpresa.TabIndex = 10;
@@ -134,6 +131,7 @@
 			// txtRutEmpresa
 			// 
 			this.txtRutEmpresa.Location = new System.Drawing.Point(149, 69);
+			this.txtRutEmpresa.MaxLength = 9;
 			this.txtRutEmpresa.Name = "txtRutEmpresa";
 			this.txtRutEmpresa.Size = new System.Drawing.Size(100, 20);
 			this.txtRutEmpresa.TabIndex = 11;
@@ -224,10 +222,18 @@
 			// cmdRubro
 			// 
 			this.cmdRubro.FormattingEnabled = true;
-			this.cmdRubro.Location = new System.Drawing.Point(266, 255);
+			this.cmdRubro.Location = new System.Drawing.Point(149, 256);
 			this.cmdRubro.Name = "cmdRubro";
 			this.cmdRubro.Size = new System.Drawing.Size(121, 21);
 			this.cmdRubro.TabIndex = 21;
+			// 
+			// txtRubroEmpresa
+			// 
+			this.txtRubroEmpresa.Location = new System.Drawing.Point(310, 256);
+			this.txtRubroEmpresa.Name = "txtRubroEmpresa";
+			this.txtRubroEmpresa.Size = new System.Drawing.Size(100, 20);
+			this.txtRubroEmpresa.TabIndex = 5;
+			this.txtRubroEmpresa.Visible = false;
 			// 
 			// EmpresaAdministrador
 			// 
@@ -270,7 +276,6 @@
 		public System.Windows.Forms.Button btnEliminar;
 		public System.Windows.Forms.Button btnCrear;
 		public System.Windows.Forms.TextBox txtIdEmpresa;
-		public System.Windows.Forms.TextBox txtRubroEmpresa;
 		public System.Windows.Forms.TextBox txtEstadoEmpresa;
 		public System.Windows.Forms.TextBox txtEmailEmpresa;
 		public System.Windows.Forms.TextBox txtTelefonoEmpresa;
@@ -286,5 +291,6 @@
 		public System.Windows.Forms.Label label7;
 		public System.Windows.Forms.Label label8;
 		public System.Windows.Forms.ComboBox cmdRubro;
+		public System.Windows.Forms.TextBox txtRubroEmpresa;
 	}
 }

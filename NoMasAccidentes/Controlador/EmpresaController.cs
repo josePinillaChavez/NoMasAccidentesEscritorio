@@ -24,15 +24,22 @@ namespace NoMasAccidentes.Controlador
 		public DataTable ListarEmpresa()
 		{			
 			DataTable dt = new DataTable();
-			string strFieldString;
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://localhost:44348/api/empresa/listar");
+
+
+			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
+			//var url = $"https://localhost:44348/api/Empresa/crear";
+			urlBase = string.Format(urlBase, "api", "empresa", "listar");
+			
+
+
+			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlBase);
 			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 			using (Stream stream = response.GetResponseStream())
 			using (StreamReader reader = new StreamReader(stream))
 			{
 				var json = reader.ReadToEnd();
 
-				var a = JsonConvert.DeserializeObject<List<Empresa>>(json);
+				//var a = JsonConvert.DeserializeObject<List<Empresa>>(json);
 				dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
 			}
 
@@ -42,13 +49,18 @@ namespace NoMasAccidentes.Controlador
 		}
 
 
-		public void ActualizarEmpresa(int idEmpresa,int idRubro,string rut,string dv,string nombre,int telefono,string email)
+		public void ActualizarEmpresa(int idEmpresa, int  idRubro, string rut, string dv_rut, string nombre, int telefono, string email)
 		{
 
-			var url = $"https://localhost:44348/api/Empresa/actualizar";
-			var request = (HttpWebRequest)WebRequest.Create(url);
-			string json = $"{{\"idEmpresa\":\"{idEmpresa}\",\"idRubro\":\"{idRubro}\",\"rut\":\"{rut}\",\"dv_rut\":\"{dv}\",\"nombre\":\"{nombre}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
-					   			 
+			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
+			//var url = $"https://localhost:44348/api/Empresa/crear";
+			urlBase = string.Format(urlBase, "api", "empresa", "actualizar");
+			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+
+
+			string json = $"{{\"idEmpresa\":\"{idEmpresa}\",\"idRubro\":\"{idRubro}\",\"rut\":\"{rut}\",\"dv_rut\":\"{dv_rut}\",\"nombre\":\"{nombre}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
+
+
 			request.Method = "POST";
 			request.ContentType = "application/json";
 			request.Accept = "application/json";
@@ -84,14 +96,15 @@ namespace NoMasAccidentes.Controlador
 		}
 
 
-		public void crearEmpresa(int idRubro, string rut, string dv, string nombre, int telefono, string email)
+		public void crearEmpresa(int idRubro, string rut, string dv_rut, string nombre, int telefono, string email)
 		{
-			
+		
+			string urlBase= ConfigurationManager.AppSettings["UrlApi"].ToString();
+			//var url = $"https://localhost:44348/api/Empresa/crear";
+			urlBase = string.Format(urlBase,"api","empresa","crear");
+			var request = (HttpWebRequest)WebRequest.Create(urlBase);
 
-			var url = $"https://localhost:44348/api/Empresa/crear";
-			var request = (HttpWebRequest)WebRequest.Create(url);
-			string json = $"{{\"idRubro\":\"{idRubro}\",\"rut\":\"{rut}\",\"dv_rut\":\"{dv}\",\"nombre\":\"{nombre}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
-
+			string json = $"{{\"idRubro\":\"{idRubro}\",\"rut\":\"{rut}\",\"dv_rut\":\"{dv_rut}\",\"nombre\":\"{nombre}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
 
 
 
@@ -136,10 +149,13 @@ namespace NoMasAccidentes.Controlador
 		public void eliminarEmpresa(int idEmpresa)
 		{
 
+			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
+			//var url = $"https://localhost:44348/api/Empresa/crear";
+			urlBase = string.Format(urlBase, "api", "empresa", "eliminar");
+			var request = (HttpWebRequest)WebRequest.Create(urlBase);
 
 
-			var url = $"https://localhost:44348/api/Empresa";
-			var request = (HttpWebRequest)WebRequest.Create(url);
+
 			string json = $"{{\"idEmpresa\":\"{idEmpresa}\"}}";
 			request.Method = "POST";
 			request.ContentType = "application/json";
@@ -174,6 +190,36 @@ namespace NoMasAccidentes.Controlador
 			}
 		}
 
+
+		public DataTable ListarEmpresaCombo()
+		{
+			DataSet dti = new DataSet();
+			DataTable dt = new DataTable();
+			try
+			{
+				using (OracleConnection cn = new OracleConnection(ConfigurationManager.AppSettings["Bd"].ToString()))
+				{
+					OracleDataAdapter da = new OracleDataAdapter();
+					OracleCommand cmd = new OracleCommand();
+					cmd.Connection = cn;
+					cmd.InitialLONGFetchSize = 1000;
+					cmd.CommandText = "SP_LISTAR_EMPRESA_COMBO";
+					cmd.CommandType = CommandType.StoredProcedure;
+					cmd.Parameters.Add("T_CURSOR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+					da.SelectCommand = cmd;
+					da.Fill(dt);
+				}
+			}
+			catch (Exception ex)
+			{
+
+			}
+
+
+
+			return dt;
+
+		}
 
 
 

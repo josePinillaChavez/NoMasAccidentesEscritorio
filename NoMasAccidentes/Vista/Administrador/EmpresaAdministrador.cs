@@ -18,7 +18,10 @@ namespace NoMasAccidentes.Vista.Administrador
 		public EmpresaAdministrador()
 		{
 			InitializeComponent();
+
+		
 		}
+
 
 		private void label1_Click(object sender, EventArgs e)
 		{
@@ -56,7 +59,14 @@ namespace NoMasAccidentes.Vista.Administrador
 			cmdRubro.DataSource = data;
 			cmdRubro.ValueMember = "ID_RUBRO";
 			cmdRubro.DisplayMember = "DESCRIPCION";
-	
+
+			string descripcion = txtRubroEmpresa.Text;
+			cmdRubro.SelectedIndex = cmdRubro.FindStringExact(descripcion);
+			
+
+
+		
+
 
 		}
 
@@ -72,6 +82,10 @@ namespace NoMasAccidentes.Vista.Administrador
 			empresa.crearEmpresa( rubroEmpresa, rutEmpresa, dvEmpresa, nombreEmpresa, telefonoEmpresa, emailEmpresa);
 			var result = MessageBox.Show("Creado Correctamente ", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Question);
 			this.Close();
+
+
+
+
 		}
 
 		private void btnEliminar_Click(object sender, EventArgs e)

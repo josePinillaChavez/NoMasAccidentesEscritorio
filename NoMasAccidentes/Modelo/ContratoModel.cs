@@ -9,33 +9,21 @@ using System.Threading.Tasks;
 
 namespace NoMasAccidentes.Modelo
 {
-	public class ContratoModel
+	// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
+	public class Contrato
 	{
-
-		public DataTable ListarContrato()
-		{
-			DataSet dti = new DataSet();
-			DataTable dt = new DataTable();
-			try
-			{
-				using (OracleConnection cn = new OracleConnection(ConfigurationManager.AppSettings["Bd"].ToString()))
-				{
-					OracleDataAdapter da = new OracleDataAdapter();
-					OracleCommand cmd = new OracleCommand();
-					cmd.Connection = cn;
-					cmd.InitialLONGFetchSize = 1000;
-					cmd.CommandText = "SP_LISTAR_CONTRATO";
-					cmd.CommandType = CommandType.StoredProcedure;
-					cmd.Parameters.Add("T_CURSOR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-					da.SelectCommand = cmd;
-					da.Fill(dt);
-				}
-			}
-			catch (Exception ex)
-			{
-
-			}
-			return dt;
-		}
+		public int id_contrato { get; set; }
+		public DateTime fecha_contrato { get; set; }
+		public DateTime fecha_termino { get; set; }
+		public string activo { get; set; }
+		public string nombre { get; set; }
+		public string nombreProfesional { get; set; }
 	}
+
+	public class Root
+	{
+		public List<Contrato> MyArray { get; set; }
+	}
+
+
 }

@@ -9,6 +9,29 @@ using System.Threading.Tasks;
 
 namespace NoMasAccidentes.Modelo
 {
+
+
+	public class ProfesioanlReturn
+	{
+		public int idProfesional { get; set; }
+		public string nombre { get; set; }
+		public string apellidoPaterno { get; set; }
+		public string apellidoMaterno { get; set; }
+		public string rut { get; set; }
+		public string dvRu { get; set; }
+		public int telefono { get; set; }
+		public string email { get; set; }
+		public string vigente { get; set; }
+	}
+
+	public class RootprofesioanlReturn
+	{
+		public List<ProfesioanlReturn> MyArray { get; set; }
+	}
+
+
+
+
 	public class ProfesionalModel
 	{
 
