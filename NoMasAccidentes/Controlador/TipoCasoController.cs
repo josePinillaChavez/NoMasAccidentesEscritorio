@@ -11,9 +11,11 @@ namespace NoMasAccidentes.Controlador
 {
 	class TipoCasoController
 	{
+		UsuarioController usuario = new UsuarioController();
 
 		public DataTable ListarTipoCasoCombo()
 		{
+
 			DataSet dti = new DataSet();
 			DataTable dt = new DataTable();
 			try

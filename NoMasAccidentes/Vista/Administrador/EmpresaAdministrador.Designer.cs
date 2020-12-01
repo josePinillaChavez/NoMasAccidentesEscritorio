@@ -99,7 +99,7 @@
 			// txtEmailEmpresa
 			// 
 			this.txtEmailEmpresa.Location = new System.Drawing.Point(149, 189);
-			this.txtEmailEmpresa.MaxLength = 20;
+			this.txtEmailEmpresa.MaxLength = 41;
 			this.txtEmailEmpresa.Name = "txtEmailEmpresa";
 			this.txtEmailEmpresa.Size = new System.Drawing.Size(100, 20);
 			this.txtEmailEmpresa.TabIndex = 7;
@@ -115,7 +115,7 @@
 			// txtNombreEmpresa
 			// 
 			this.txtNombreEmpresa.Location = new System.Drawing.Point(149, 108);
-			this.txtNombreEmpresa.MaxLength = 30;
+			this.txtNombreEmpresa.MaxLength = 100;
 			this.txtNombreEmpresa.Name = "txtNombreEmpresa";
 			this.txtNombreEmpresa.Size = new System.Drawing.Size(100, 20);
 			this.txtNombreEmpresa.TabIndex = 9;

@@ -19,20 +19,20 @@ namespace NoMasAccidentes.Vista.Administrador
 
 			UsuarioController usuario = new UsuarioController();
 			DataTable dataEmpresa = new DataTable();
-			dataEmpresa = usuario.ListarUsuario();
+			dataEmpresa = usuario.ListarUsuarioCombo();
 
 			cmbUsuario.DataSource = dataEmpresa;
-			cmbUsuario.ValueMember = "idUsuario";
-			cmbUsuario.DisplayMember = "USUARIO";
+			cmbUsuario.ValueMember = "id_usuario";
+			cmbUsuario.DisplayMember = "usuario";
 
 
 			ContratoController contrato = new ContratoController();
 			DataTable dataDetalle = new DataTable();
-			dataDetalle = contrato.ListarContrato();
+			dataDetalle = contrato.ListarContratoCombo();
 
 			cmbContrato.DataSource = dataDetalle;
 			cmbContrato.ValueMember = "id_contrato";
-			cmbContrato.DisplayMember = "nombre";
+			cmbContrato.DisplayMember = "id_contrato";
 		}
 
 		private void btnCrearCurso_Click(object sender, EventArgs e)

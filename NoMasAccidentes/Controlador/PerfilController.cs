@@ -11,9 +11,11 @@ namespace NoMasAccidentes.Controlador
 {
 	class PerfilController
 	{
+		UsuarioController usuario = new UsuarioController();
 
 		public DataTable ListarPerfil()
 		{
+
 			DataSet dti = new DataSet();
 			DataTable dt = new DataTable();
 			try

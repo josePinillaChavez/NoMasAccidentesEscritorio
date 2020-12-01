@@ -117,7 +117,7 @@
 			// txtNombreUsuario
 			// 
 			this.txtNombreUsuario.Location = new System.Drawing.Point(131, 91);
-			this.txtNombreUsuario.MaxLength = 9;
+			this.txtNombreUsuario.MaxLength = 30;
 			this.txtNombreUsuario.Name = "txtNombreUsuario";
 			this.txtNombreUsuario.Size = new System.Drawing.Size(100, 20);
 			this.txtNombreUsuario.TabIndex = 32;

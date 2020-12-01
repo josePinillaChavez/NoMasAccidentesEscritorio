@@ -179,6 +179,7 @@
 			// txtDetalleAccidente
 			// 
 			this.txtDetalleAccidente.Location = new System.Drawing.Point(214, 110);
+			this.txtDetalleAccidente.MaxLength = 500;
 			this.txtDetalleAccidente.Name = "txtDetalleAccidente";
 			this.txtDetalleAccidente.Size = new System.Drawing.Size(100, 20);
 			this.txtDetalleAccidente.TabIndex = 69;

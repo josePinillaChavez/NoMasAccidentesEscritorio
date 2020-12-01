@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeAdministrador));
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.btnAgregarEmpresa = new System.Windows.Forms.Button();
@@ -63,6 +64,7 @@
 			this.btnCrearAccidente = new System.Windows.Forms.Button();
 			this.dgvAccidentes = new System.Windows.Forms.DataGridView();
 			this.DetalleAccidente = new System.Windows.Forms.DataGridViewButtonColumn();
+			this.skinEngine1 = new Sunisoft.IrisSkin.SkinEngine(((System.ComponentModel.Component)(this)));
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpresa)).BeginInit();
@@ -98,7 +100,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(12, 39);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(985, 470);
+			this.tabControl1.Size = new System.Drawing.Size(1160, 519);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// tabPage1
@@ -108,7 +110,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(977, 444);
+			this.tabPage1.Size = new System.Drawing.Size(1152, 493);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Empresas";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -127,13 +129,13 @@
 			// 
 			this.dataGridViewEmpresa.AllowUserToOrderColumns = true;
 			this.dataGridViewEmpresa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.dataGridViewEmpresa.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+			this.dataGridViewEmpresa.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
 			this.dataGridViewEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Detalle});
-			this.dataGridViewEmpresa.Location = new System.Drawing.Point(35, 52);
+			this.dataGridViewEmpresa.Location = new System.Drawing.Point(6, 52);
 			this.dataGridViewEmpresa.Name = "dataGridViewEmpresa";
-			this.dataGridViewEmpresa.Size = new System.Drawing.Size(938, 361);
+			this.dataGridViewEmpresa.Size = new System.Drawing.Size(1129, 424);
 			this.dataGridViewEmpresa.TabIndex = 0;
 			this.dataGridViewEmpresa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmpresa_CellContentClick);
 			// 
@@ -153,7 +155,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(977, 444);
+			this.tabPage2.Size = new System.Drawing.Size(1152, 493);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Profesional";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -166,9 +168,9 @@
 			this.dgvprofesional.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvprofesional.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DetalleProfesional});
-			this.dgvprofesional.Location = new System.Drawing.Point(16, 66);
+			this.dgvprofesional.Location = new System.Drawing.Point(6, 52);
 			this.dgvprofesional.Name = "dgvprofesional";
-			this.dgvprofesional.Size = new System.Drawing.Size(858, 334);
+			this.dgvprofesional.Size = new System.Drawing.Size(1129, 424);
 			this.dgvprofesional.TabIndex = 1;
 			this.dgvprofesional.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvprofesional_CellContentClick);
 			// 
@@ -181,11 +183,11 @@
 			// 
 			// btnCrearprofesional
 			// 
-			this.btnCrearprofesional.Location = new System.Drawing.Point(16, 37);
+			this.btnCrearprofesional.Location = new System.Drawing.Point(35, 23);
 			this.btnCrearprofesional.Name = "btnCrearprofesional";
 			this.btnCrearprofesional.Size = new System.Drawing.Size(192, 23);
 			this.btnCrearprofesional.TabIndex = 0;
-			this.btnCrearprofesional.Text = "Crear Profesional";
+			this.btnCrearprofesional.Text = "Agregar Profesional";
 			this.btnCrearprofesional.UseVisualStyleBackColor = true;
 			this.btnCrearprofesional.Click += new System.EventHandler(this.btnCrearprofesional_Click);
 			// 
@@ -196,7 +198,7 @@
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(977, 444);
+			this.tabPage3.Size = new System.Drawing.Size(1152, 493);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Usuario";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -208,9 +210,9 @@
 			this.dgvUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DetalleUsuario});
-			this.dgvUsuario.Location = new System.Drawing.Point(36, 61);
+			this.dgvUsuario.Location = new System.Drawing.Point(6, 52);
 			this.dgvUsuario.Name = "dgvUsuario";
-			this.dgvUsuario.Size = new System.Drawing.Size(865, 360);
+			this.dgvUsuario.Size = new System.Drawing.Size(1129, 424);
 			this.dgvUsuario.TabIndex = 1;
 			this.dgvUsuario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuario_CellContentClick);
 			// 
@@ -226,7 +228,7 @@
 			// 
 			// btnAgregarUsuario
 			// 
-			this.btnAgregarUsuario.Location = new System.Drawing.Point(36, 32);
+			this.btnAgregarUsuario.Location = new System.Drawing.Point(35, 23);
 			this.btnAgregarUsuario.Name = "btnAgregarUsuario";
 			this.btnAgregarUsuario.Size = new System.Drawing.Size(133, 23);
 			this.btnAgregarUsuario.TabIndex = 0;
@@ -241,7 +243,7 @@
 			this.tabPage4.Location = new System.Drawing.Point(4, 22);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(977, 444);
+			this.tabPage4.Size = new System.Drawing.Size(1152, 493);
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "Contrato";
 			this.tabPage4.UseVisualStyleBackColor = true;
@@ -253,9 +255,9 @@
 			this.dgvContrato.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvContrato.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DetalleContrato});
-			this.dgvContrato.Location = new System.Drawing.Point(22, 54);
+			this.dgvContrato.Location = new System.Drawing.Point(6, 52);
 			this.dgvContrato.Name = "dgvContrato";
-			this.dgvContrato.Size = new System.Drawing.Size(880, 359);
+			this.dgvContrato.Size = new System.Drawing.Size(1129, 424);
 			this.dgvContrato.TabIndex = 1;
 			this.dgvContrato.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvContrato_CellContentClick);
 			// 
@@ -271,11 +273,11 @@
 			// 
 			// btnCrearContrato
 			// 
-			this.btnCrearContrato.Location = new System.Drawing.Point(22, 25);
+			this.btnCrearContrato.Location = new System.Drawing.Point(35, 23);
 			this.btnCrearContrato.Name = "btnCrearContrato";
 			this.btnCrearContrato.Size = new System.Drawing.Size(99, 23);
 			this.btnCrearContrato.TabIndex = 0;
-			this.btnCrearContrato.Text = "Crear Contrato";
+			this.btnCrearContrato.Text = "Agregar Contrato";
 			this.btnCrearContrato.UseVisualStyleBackColor = true;
 			this.btnCrearContrato.Click += new System.EventHandler(this.btnCrearContrato_Click);
 			// 
@@ -285,7 +287,7 @@
 			this.tabPage5.Location = new System.Drawing.Point(4, 22);
 			this.tabPage5.Name = "tabPage5";
 			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage5.Size = new System.Drawing.Size(977, 444);
+			this.tabPage5.Size = new System.Drawing.Size(1152, 493);
 			this.tabPage5.TabIndex = 4;
 			this.tabPage5.Text = "Documentos Tributarios";
 			this.tabPage5.UseVisualStyleBackColor = true;
@@ -295,9 +297,9 @@
 			this.dgvDocTribu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgvDocTribu.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.dgvDocTribu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvDocTribu.Location = new System.Drawing.Point(32, 38);
+			this.dgvDocTribu.Location = new System.Drawing.Point(6, 52);
 			this.dgvDocTribu.Name = "dgvDocTribu";
-			this.dgvDocTribu.Size = new System.Drawing.Size(863, 371);
+			this.dgvDocTribu.Size = new System.Drawing.Size(1129, 424);
 			this.dgvDocTribu.TabIndex = 1;
 			// 
 			// tabPage6
@@ -307,31 +309,31 @@
 			this.tabPage6.Location = new System.Drawing.Point(4, 22);
 			this.tabPage6.Name = "tabPage6";
 			this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage6.Size = new System.Drawing.Size(977, 444);
+			this.tabPage6.Size = new System.Drawing.Size(1152, 493);
 			this.tabPage6.TabIndex = 5;
 			this.tabPage6.Text = "Cursos";
 			this.tabPage6.UseVisualStyleBackColor = true;
 			// 
 			// btnCrearCurso
 			// 
-			this.btnCrearCurso.Location = new System.Drawing.Point(48, 15);
+			this.btnCrearCurso.Location = new System.Drawing.Point(35, 23);
 			this.btnCrearCurso.Name = "btnCrearCurso";
-			this.btnCrearCurso.Size = new System.Drawing.Size(75, 23);
+			this.btnCrearCurso.Size = new System.Drawing.Size(134, 23);
 			this.btnCrearCurso.TabIndex = 1;
-			this.btnCrearCurso.Text = "Crear Curso";
+			this.btnCrearCurso.Text = "Agregar Curso";
 			this.btnCrearCurso.UseVisualStyleBackColor = true;
 			this.btnCrearCurso.Click += new System.EventHandler(this.btnCrearCurso_Click);
 			// 
 			// dgvCurso
 			// 
-			this.dgvCurso.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+			this.dgvCurso.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgvCurso.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.dgvCurso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvCurso.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DetalleCurso});
-			this.dgvCurso.Location = new System.Drawing.Point(48, 44);
+			this.dgvCurso.Location = new System.Drawing.Point(6, 52);
 			this.dgvCurso.Name = "dgvCurso";
-			this.dgvCurso.Size = new System.Drawing.Size(816, 339);
+			this.dgvCurso.Size = new System.Drawing.Size(1129, 424);
 			this.dgvCurso.TabIndex = 0;
 			this.dgvCurso.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCurso_CellContentClick);
 			// 
@@ -343,7 +345,6 @@
 			this.DetalleCurso.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			this.DetalleCurso.Text = "Detalle";
 			this.DetalleCurso.UseColumnTextForButtonValue = true;
-			this.DetalleCurso.Width = 65;
 			// 
 			// tabPage7
 			// 
@@ -352,16 +353,16 @@
 			this.tabPage7.Location = new System.Drawing.Point(4, 22);
 			this.tabPage7.Name = "tabPage7";
 			this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage7.Size = new System.Drawing.Size(977, 444);
+			this.tabPage7.Size = new System.Drawing.Size(1152, 493);
 			this.tabPage7.TabIndex = 6;
 			this.tabPage7.Text = "Visitas";
 			this.tabPage7.UseVisualStyleBackColor = true;
 			// 
 			// btnCrearVisita
 			// 
-			this.btnCrearVisita.Location = new System.Drawing.Point(42, 27);
+			this.btnCrearVisita.Location = new System.Drawing.Point(35, 23);
 			this.btnCrearVisita.Name = "btnCrearVisita";
-			this.btnCrearVisita.Size = new System.Drawing.Size(75, 23);
+			this.btnCrearVisita.Size = new System.Drawing.Size(127, 23);
 			this.btnCrearVisita.TabIndex = 1;
 			this.btnCrearVisita.Text = "Agregar Visita";
 			this.btnCrearVisita.UseVisualStyleBackColor = true;
@@ -374,9 +375,9 @@
 			this.dgvVisitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvVisitas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DetalleVisita});
-			this.dgvVisitas.Location = new System.Drawing.Point(42, 56);
+			this.dgvVisitas.Location = new System.Drawing.Point(6, 52);
 			this.dgvVisitas.Name = "dgvVisitas";
-			this.dgvVisitas.Size = new System.Drawing.Size(781, 320);
+			this.dgvVisitas.Size = new System.Drawing.Size(1129, 424);
 			this.dgvVisitas.TabIndex = 0;
 			this.dgvVisitas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVisitas_CellContentClick);
 			// 
@@ -397,18 +398,18 @@
 			this.tabPage8.Location = new System.Drawing.Point(4, 22);
 			this.tabPage8.Name = "tabPage8";
 			this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage8.Size = new System.Drawing.Size(977, 444);
+			this.tabPage8.Size = new System.Drawing.Size(1152, 493);
 			this.tabPage8.TabIndex = 7;
 			this.tabPage8.Text = "Casos";
 			this.tabPage8.UseVisualStyleBackColor = true;
 			// 
 			// btnCaso
 			// 
-			this.btnCaso.Location = new System.Drawing.Point(48, 30);
+			this.btnCaso.Location = new System.Drawing.Point(35, 23);
 			this.btnCaso.Name = "btnCaso";
-			this.btnCaso.Size = new System.Drawing.Size(75, 23);
+			this.btnCaso.Size = new System.Drawing.Size(105, 23);
 			this.btnCaso.TabIndex = 1;
-			this.btnCaso.Text = "Crear Caso";
+			this.btnCaso.Text = "Agregar Caso";
 			this.btnCaso.UseVisualStyleBackColor = true;
 			this.btnCaso.Click += new System.EventHandler(this.btnCaso_Click);
 			// 
@@ -419,9 +420,9 @@
 			this.dgvCasos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvCasos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DetalleCaso});
-			this.dgvCasos.Location = new System.Drawing.Point(48, 70);
+			this.dgvCasos.Location = new System.Drawing.Point(6, 52);
 			this.dgvCasos.Name = "dgvCasos";
-			this.dgvCasos.Size = new System.Drawing.Size(799, 313);
+			this.dgvCasos.Size = new System.Drawing.Size(1129, 424);
 			this.dgvCasos.TabIndex = 0;
 			this.dgvCasos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCasos_CellContentClick);
 			// 
@@ -440,18 +441,18 @@
 			this.tabPage9.Location = new System.Drawing.Point(4, 22);
 			this.tabPage9.Name = "tabPage9";
 			this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage9.Size = new System.Drawing.Size(977, 444);
+			this.tabPage9.Size = new System.Drawing.Size(1152, 493);
 			this.tabPage9.TabIndex = 8;
 			this.tabPage9.Text = "Accidentes";
 			this.tabPage9.UseVisualStyleBackColor = true;
 			// 
 			// btnCrearAccidente
 			// 
-			this.btnCrearAccidente.Location = new System.Drawing.Point(30, 27);
+			this.btnCrearAccidente.Location = new System.Drawing.Point(35, 23);
 			this.btnCrearAccidente.Name = "btnCrearAccidente";
-			this.btnCrearAccidente.Size = new System.Drawing.Size(75, 23);
+			this.btnCrearAccidente.Size = new System.Drawing.Size(120, 23);
 			this.btnCrearAccidente.TabIndex = 1;
-			this.btnCrearAccidente.Text = "Crear Accidente";
+			this.btnCrearAccidente.Text = "Agregar Accidente";
 			this.btnCrearAccidente.UseVisualStyleBackColor = true;
 			this.btnCrearAccidente.Click += new System.EventHandler(this.btnCrearAccidente_Click);
 			// 
@@ -462,9 +463,9 @@
 			this.dgvAccidentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvAccidentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DetalleAccidente});
-			this.dgvAccidentes.Location = new System.Drawing.Point(30, 71);
+			this.dgvAccidentes.Location = new System.Drawing.Point(6, 52);
 			this.dgvAccidentes.Name = "dgvAccidentes";
-			this.dgvAccidentes.Size = new System.Drawing.Size(822, 326);
+			this.dgvAccidentes.Size = new System.Drawing.Size(1129, 424);
 			this.dgvAccidentes.TabIndex = 0;
 			this.dgvAccidentes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAccidentes_CellContentClick);
 			// 
@@ -476,11 +477,18 @@
 			this.DetalleAccidente.ToolTipText = "Detalle";
 			this.DetalleAccidente.UseColumnTextForButtonValue = true;
 			// 
+			// skinEngine1
+			// 
+			this.skinEngine1.SerialNumber = "U4N2UjLguUZs33UR+Vy47JAZ81t2fjIFvut28vc5oHiVeivGb/NZMA==";
+			this.skinEngine1.SkinFile = "C:\\Users\\josep\\Downloads\\Componentes Graficos Vb2\\Componentes Graficos Vb2\\SKIN N" +
+    "ET 2010 WIN 7\\SkinVS.NET\\Longhorn\\Longhorn.ssk";
+			this.skinEngine1.SkinStreamMain = ((System.IO.Stream)(resources.GetObject("skinEngine1.SkinStreamMain")));
+			// 
 			// HomeAdministrador
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1062, 544);
+			this.ClientSize = new System.Drawing.Size(1184, 570);
 			this.Controls.Add(this.tabControl1);
 			this.Name = "HomeAdministrador";
 			this.Text = "HomeAdministrador";
@@ -544,5 +552,6 @@
 		private System.Windows.Forms.DataGridViewButtonColumn DetalleCaso;
 		private System.Windows.Forms.Button btnCrearAccidente;
 		private System.Windows.Forms.DataGridViewButtonColumn DetalleAccidente;
+		private Sunisoft.IrisSkin.SkinEngine skinEngine1;
 	}
 }

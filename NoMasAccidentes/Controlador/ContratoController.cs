@@ -15,12 +15,15 @@ namespace NoMasAccidentes.Controlador
 {
 	class ContratoController
 	{
+		UsuarioController usuario = new UsuarioController();
 
 		public DataTable ListarContrato()
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			DataTable dt = new DataTable();
 			string strFieldString;
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://localhost:44348/api/Contrato/listar");
+			request.Headers.Add("Authorization", "Bearer " + token);
 			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 			using (Stream stream = response.GetResponseStream())
 			using (StreamReader reader = new StreamReader(stream))
@@ -29,7 +32,7 @@ namespace NoMasAccidentes.Controlador
 
 
 
-				var a = JsonConvert.DeserializeObject<List<Contrato>>(json);
+				//var a = JsonConvert.DeserializeObject<List<Contrato>>(json);
 				dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
 			}
 
@@ -41,9 +44,10 @@ namespace NoMasAccidentes.Controlador
 
 		public void EliminarContrato(int idcontrato)
 		{
-
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			var url = $"https://localhost:44348/api/Contrato/eliminar";
 			var request = (HttpWebRequest)WebRequest.Create(url);
+			request.Headers.Add("Authorization", "Bearer " + token);
 			string json = $"{{\"idcontrato\":\"{idcontrato}\"}}";
 			request.Method = "POST";
 			request.ContentType = "application/json";
@@ -83,10 +87,11 @@ namespace NoMasAccidentes.Controlador
 		public void crearContrato(int idProfesional, int idEmpresa)
 		{
 
-
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			var url = $"https://localhost:44348/api/Contrato/crear";
 			var request = (HttpWebRequest)WebRequest.Create(url);
-			string json = $"{{\"idEmpresa\":\"{idEmpresa}\",\"idProfesional\":\"{idProfesional}\"}}";
+			request.Headers.Add("Authorization", "Bearer " + token);
+			string json = $"{{\"id_contrato\":\"{idEmpresa}\"}}";
 
 
 
@@ -134,6 +139,7 @@ namespace NoMasAccidentes.Controlador
 
 		public DataTable ListarContratoCombo()
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			DataSet dti = new DataSet();
 			DataTable dt = new DataTable();
 			try

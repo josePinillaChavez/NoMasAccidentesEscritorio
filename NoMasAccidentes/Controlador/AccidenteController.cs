@@ -14,9 +14,13 @@ namespace NoMasAccidentes.Controlador
 {
 	class AccidenteController
 	{
+		UsuarioController usuario = new UsuarioController();
+
+
 
 		public DataTable listarAccidente()
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			DataTable dt = new DataTable();
 
 
@@ -26,13 +30,15 @@ namespace NoMasAccidentes.Controlador
 
 
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+
 			using (Stream stream = response.GetResponseStream())
 			using (StreamReader reader = new StreamReader(stream))
 			{
 				var json = reader.ReadToEnd();
 
-				var a = JsonConvert.DeserializeObject<List<AccidenteModel>>(json);
+				//var a = JsonConvert.DeserializeObject<List<AccidenteModel>>(json);
 				dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
 			}
 
@@ -46,15 +52,19 @@ namespace NoMasAccidentes.Controlador
 
 		public bool crearAccidente(int IN_ID_DETALLE_CONTRATO, string IN_DETALLE_ACCIDENTE, DateTime IN_FECHA_ACCIDENTE, int IN_USUARIO)
 		{
-		
+
+			UsuarioController usuario = new UsuarioController();
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 
 			bool ok = false;
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			urlBase = string.Format(urlBase, "api", "accidente", "crear");
-			var request = (HttpWebRequest)WebRequest.Create(urlBase);
 
-			string json = $"{{\"IN_ID_DETALLE_CONTRATO\":\"{IN_ID_DETALLE_CONTRATO}\",\"IN_DETALLE_ACCIDENTE\":\"{IN_DETALLE_ACCIDENTE}\"," +
-				$"\"IN_FECHA_ACCIDENTE\":\"{IN_FECHA_ACCIDENTE}\",\"IN_USUARIO\":\"{IN_USUARIO}\"}}";
+			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
+
+			string json = $"{{\"id_contrato\":\"{IN_ID_DETALLE_CONTRATO}\",\"detalle_accidente\":\"{IN_DETALLE_ACCIDENTE}\"," +
+				$"\"fecha_accidente\":\"{IN_FECHA_ACCIDENTE}\",\"usuario\":\"{IN_USUARIO}\"}}";
 
 			request.Method = "POST";
 			request.ContentType = "application/json";
@@ -96,13 +106,14 @@ namespace NoMasAccidentes.Controlador
 
 		public bool ActualizarAccidente(int IN_ID_ACCIDENTE, int IN_ID_DETALLE_CONTRATO, string IN_DETALLE_ACCIDENTE, DateTime IN_FECHA_ACCIDENTE, int IN_USUARIO)
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			urlBase = string.Format(urlBase, "api", "accidente", "actualizar");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 
-
-			string json = $"{{\"IN_ID_ACCIDENTE\":\"{IN_ID_ACCIDENTE}\",\"IN_ID_DETALLE_CONTRATO\":\"{IN_ID_DETALLE_CONTRATO}\"," +
-				$"\"IN_DETALLE_ACCIDENTE\":\"{IN_DETALLE_ACCIDENTE}\",\"IN_FECHA_ACCIDENTE\":\"{IN_FECHA_ACCIDENTE}\",\"IN_USUARIO\":\"{IN_USUARIO}\"}}";
+			string json = $"{{\"id_acciente\":\"{IN_ID_ACCIDENTE}\",\"id_contrato\":\"{IN_ID_DETALLE_CONTRATO}\"," +
+				$"\"detalle_accidente\":\"{IN_DETALLE_ACCIDENTE}\",\"fecha_accidente\":\"{IN_FECHA_ACCIDENTE}\",\"usuario\":\"{IN_USUARIO}\"}}";
 
 
 
@@ -148,14 +159,14 @@ namespace NoMasAccidentes.Controlador
 
 		public void eliminarAccidente(int IN_ID_ACCIDENTE)
 		{
-
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			urlBase = string.Format(urlBase, "api", "accidente", "eliminar");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 
 
-
-			string json = $"{{\"IN_ID_ACCIDENTE\":\"{IN_ID_ACCIDENTE}\"}}";
+			string json = $"{{\"id_acciente\":\"{IN_ID_ACCIDENTE}\"}}";
 			request.Method = "POST";
 			request.ContentType = "application/json";
 			request.Accept = "application/json";

@@ -20,19 +20,22 @@ namespace NoMasAccidentes.Controlador
 {
 	public class EmpresaController
 	{
+		UsuarioController usuario = new UsuarioController();
 
 		public DataTable ListarEmpresa()
-		{			
-			DataTable dt = new DataTable();
+		{
+			
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena,LoginInfo.perfil);
+
+     		DataTable dt = new DataTable();
 
 
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
-			//var url = $"https://localhost:44348/api/Empresa/crear";
-			urlBase = string.Format(urlBase, "api", "empresa", "listar");
-			
+			urlBase = string.Format(urlBase, "api", "empresa", "listar");			
 
 
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 			using (Stream stream = response.GetResponseStream())
 			using (StreamReader reader = new StreamReader(stream))
@@ -51,14 +54,15 @@ namespace NoMasAccidentes.Controlador
 
 		public void ActualizarEmpresa(int idEmpresa, int  idRubro, string rut, string dv_rut, string nombre, int telefono, string email)
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			//var url = $"https://localhost:44348/api/Empresa/crear";
 			urlBase = string.Format(urlBase, "api", "empresa", "actualizar");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 
-
-			string json = $"{{\"idEmpresa\":\"{idEmpresa}\",\"idRubro\":\"{idRubro}\",\"rut\":\"{rut}\",\"dv_rut\":\"{dv_rut}\",\"nombre\":\"{nombre}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
+			string json = $"{{\"id_empresa\":\"{idEmpresa}\",\"id_rubro\":\"{idRubro}\",\"rut\":\"{rut}\",\"dv_rut\":\"{dv_rut}\",\"nombre\":\"{nombre}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
 
 
 			request.Method = "POST";
@@ -98,13 +102,14 @@ namespace NoMasAccidentes.Controlador
 
 		public void crearEmpresa(int idRubro, string rut, string dv_rut, string nombre, int telefono, string email)
 		{
-		
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
+
 			string urlBase= ConfigurationManager.AppSettings["UrlApi"].ToString();
-			//var url = $"https://localhost:44348/api/Empresa/crear";
 			urlBase = string.Format(urlBase,"api","empresa","crear");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 
-			string json = $"{{\"idRubro\":\"{idRubro}\",\"rut\":\"{rut}\",\"dv_rut\":\"{dv_rut}\",\"nombre\":\"{nombre}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
+			string json = $"{{\"id_rubro\":\"{idRubro}\",\"rut\":\"{rut}\",\"dv_rut\":\"{dv_rut}\",\"nombre\":\"{nombre}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
 
 
 
@@ -148,15 +153,17 @@ namespace NoMasAccidentes.Controlador
 
 		public void eliminarEmpresa(int idEmpresa)
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			//var url = $"https://localhost:44348/api/Empresa/crear";
 			urlBase = string.Format(urlBase, "api", "empresa", "eliminar");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 
 
 
-			string json = $"{{\"idEmpresa\":\"{idEmpresa}\"}}";
+			string json = $"{{\"id_empresa\":\"{idEmpresa}\"}}";
 			request.Method = "POST";
 			request.ContentType = "application/json";
 			request.Accept = "application/json";
@@ -193,6 +200,8 @@ namespace NoMasAccidentes.Controlador
 
 		public DataTable ListarEmpresaCombo()
 		{
+
+
 			DataSet dti = new DataSet();
 			DataTable dt = new DataTable();
 			try

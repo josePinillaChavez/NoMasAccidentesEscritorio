@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoMasAccidentes.Vista.Administrador;
+using NoMasAccidentes.Vista.Login;
 
 namespace NoMasAccidentes
 {
@@ -17,7 +18,7 @@ namespace NoMasAccidentes
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new HomeAdministrador());
+			Application.Run(new Login());
 		}
 	}
 }

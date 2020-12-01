@@ -15,9 +15,11 @@ namespace NoMasAccidentes.Controlador
 {
 	public class ProfesionalController
 	{
+		UsuarioController usuario = new UsuarioController();
 
 		public DataTable ListarProfesional()
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			DataTable dt = new DataTable();
 
 
@@ -28,13 +30,15 @@ namespace NoMasAccidentes.Controlador
 
 
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
+
 			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 			using (Stream stream = response.GetResponseStream())
 			using (StreamReader reader = new StreamReader(stream))
 			{
 				var json = reader.ReadToEnd();
 
-				var a = JsonConvert.DeserializeObject<List<ProfesioanlReturn>>(json);
+				//var a = JsonConvert.DeserializeObject<List<ProfesioanlReturn>>(json);
 				dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
 			}
 
@@ -44,16 +48,16 @@ namespace NoMasAccidentes.Controlador
 		}
 
 
-
 		public bool ActualizarProfesional(int idProfesional, string nombre, string apellidoPaterno, string apellidoMaterno, string rut, string dvRut, int telefono, string email)
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			//var url = $"https://localhost:44348/api/Empresa/crear";
 			urlBase = string.Format(urlBase, "api", "profesional", "actualizar");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 
-
-			string json = $"{{\"idProfesional\":\"{idProfesional}\",\"nombre\":\"{nombre}\",\"apellidoPaterno\":\"{apellidoPaterno}\",\"apellidoMaterno\":\"{apellidoMaterno}\",\"rut\":\"{rut}\",\"dvRut\":\"{dvRut}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
+			string json = $"{{\"id_profesional\":\"{idProfesional}\",\"nombre\":\"{nombre}\",\"apellido_paterno\":\"{apellidoPaterno}\",\"apellido_materno\":\"{apellidoMaterno}\",\"rut\":\"{rut}\",\"dv_rut\":\"{dvRut}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\"}}";
 
 
 
@@ -94,17 +98,17 @@ namespace NoMasAccidentes.Controlador
 
 		}
 
-
-
+		
 		public bool crearProfesional(string nombre, string apellidoPaterno, string apellidoMaterno, string rut, string dvRut, int telefono, string email)
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			bool ok = false;
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			//var url = $"https://localhost:44348/api/Empresa/crear";
 			urlBase = string.Format(urlBase, "api", "profesional", "crear");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
-
-			string json = $"{{\"nombre\":\"{nombre}\",\"apellidoPaterno\":\"{apellidoPaterno}\",\"apellidoMaterno\":\"{apellidoMaterno}\",\"rut\":\"{rut}\",\"dvRut\":\"{dvRut}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\",\"vigente\":\"{1}\"}}";
+			request.Headers.Add("Authorization", "Bearer " + token);
+			string json = $"{{\"nombre\":\"{nombre}\",\"apellido_paterno\":\"{apellidoPaterno}\",\"apellido_materno\":\"{apellidoMaterno}\",\"rut\":\"{rut}\",\"dv_rut\":\"{dvRut}\",\"telefono\":\"{telefono}\",\"email\":\"{email}\",\"vigente\":\"{1}\"}}";
 
 
 
@@ -147,13 +151,14 @@ namespace NoMasAccidentes.Controlador
 
 		public bool eliminarProfesional(int idProfesional)
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			urlBase = string.Format(urlBase, "api", "profesional", "eliminar");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 
 
-
-			string json = $"{{\"idProfesional\":\"{idProfesional}\"}}";
+			string json = $"{{\"id_profesional\":\"{idProfesional}\"}}";
 			request.Method = "POST";
 			request.ContentType = "application/json";
 			request.Accept = "application/json";

@@ -137,9 +137,9 @@ namespace NoMasAccidentes.Vista.Administrador
 			try
 			{
 				dataGridViewEmpresa.Refresh();
-				dataGridViewEmpresa.DataSource = dt;
-				
+				dataGridViewEmpresa.DataSource = dt;				
 				dataGridViewEmpresa.Update();
+				dataGridViewEmpresa.Columns["id_empresa"].Visible = false;
 			}
 			catch (Exception ex)
 			{
@@ -160,6 +160,7 @@ namespace NoMasAccidentes.Vista.Administrador
 				dgvprofesional.Refresh();
 				dgvprofesional.DataSource = dt;
 				dgvprofesional.Update();
+				dgvprofesional.Columns["ID_PROFESIONAL"].Visible = false;
 			}
 			catch (Exception ex)
 			{
@@ -180,6 +181,8 @@ namespace NoMasAccidentes.Vista.Administrador
 				dgvUsuario.Refresh();
 				dgvUsuario.DataSource = dt;
 				dgvUsuario.Update();
+				dgvUsuario.Columns["ID_USUARIO"].Visible = false;
+				
 			}
 			catch (Exception ex)
 			{
@@ -235,14 +238,15 @@ namespace NoMasAccidentes.Vista.Administrador
 			DataGridViewRow rellenaDatos = dataGridViewEmpresa.Rows[e.RowIndex];
 			formEmpresa.txtEstadoEmpresa.Enabled = false;
 			formEmpresa.txtIdEmpresa.Text = rellenaDatos.Cells["id_empresa"].Value.ToString();
-			formEmpresa.txtRutEmpresa.Text = rellenaDatos.Cells["rut"].Value.ToString();
-			formEmpresa.txtDvEmpresa.Text = rellenaDatos.Cells["dv_rut"].Value.ToString();
-			formEmpresa.txtNombreEmpresa.Text = rellenaDatos.Cells["nombre"].Value.ToString();
-			formEmpresa.txtTelefonoEmpresa.Text = rellenaDatos.Cells["telefono"].Value.ToString();
-			formEmpresa.txtEmailEmpresa.Text = rellenaDatos.Cells["email"].Value.ToString();
-			formEmpresa.txtEstadoEmpresa.Text = rellenaDatos.Cells["vigente"].Value.ToString();
-			formEmpresa.txtRubroEmpresa.Text = rellenaDatos.Cells["descripcion"].Value.ToString();
+			formEmpresa.txtRutEmpresa.Text = rellenaDatos.Cells["Rut empresa"].Value.ToString();
+			formEmpresa.txtDvEmpresa.Text = rellenaDatos.Cells["Dv empresa"].Value.ToString();
+			formEmpresa.txtNombreEmpresa.Text = rellenaDatos.Cells["Nombre empresa"].Value.ToString();
+			formEmpresa.txtTelefonoEmpresa.Text = rellenaDatos.Cells["Telefono Empresa"].Value.ToString();
+			formEmpresa.txtEmailEmpresa.Text = rellenaDatos.Cells["Email empresa"].Value.ToString();
+			formEmpresa.txtEstadoEmpresa.Text = rellenaDatos.Cells["Estado Empresa"].Value.ToString();
+			formEmpresa.txtRubroEmpresa.Text = rellenaDatos.Cells["Rubro empresa"].Value.ToString();
 
+		
 			if (!string.IsNullOrEmpty(rellenaDatos.Cells["id_empresa"].Value.ToString()))
 			{
 				formEmpresa.btnCrear.Enabled = false;
@@ -299,19 +303,18 @@ namespace NoMasAccidentes.Vista.Administrador
 			ProfesionalAdministrador formProfesional = new ProfesionalAdministrador();
 			DataGridViewRow rellenaDatos = dgvprofesional.Rows[e.RowIndex];
 			formProfesional.txtEstadoProfesional.Enabled = false;
-			formProfesional.txtIdProfesional.Text = rellenaDatos.Cells["idProfesional"].Value.ToString();
-			formProfesional.txtNombreProfesional.Text = rellenaDatos.Cells["nombre"].Value.ToString();
-			formProfesional.txtEstadoProfesional.Text = rellenaDatos.Cells["vigente"].Value.ToString();
-			formProfesional.txtApellidopaterno.Text = rellenaDatos.Cells["apellidoPaterno"].Value.ToString();
-			formProfesional.txtApellidoMaterno.Text = rellenaDatos.Cells["apellidoMaterno"].Value.ToString();
-			formProfesional.txtRutProfesional.Text = rellenaDatos.Cells["rut"].Value.ToString();
-			formProfesional.txtDvProfesional.Text = rellenaDatos.Cells["dvRu"].Value.ToString();
-			formProfesional.txtTelefonoProfesional.Text = rellenaDatos.Cells["telefono"].Value.ToString();
-			formProfesional.txtEmailProfesional.Text = rellenaDatos.Cells["email"].Value.ToString();
+			formProfesional.txtIdProfesional.Text = rellenaDatos.Cells["ID_PROFESIONAL"].Value.ToString();
+			formProfesional.txtNombreProfesional.Text = rellenaDatos.Cells["Nombre profesional"].Value.ToString();
+			formProfesional.txtEstadoProfesional.Text = rellenaDatos.Cells["Estado profesional"].Value.ToString();
+			formProfesional.txtApellidopaterno.Text = rellenaDatos.Cells["Apellido paterno"].Value.ToString();
+			formProfesional.txtApellidoMaterno.Text = rellenaDatos.Cells["Apellido materno"].Value.ToString();
+			formProfesional.txtRutProfesional.Text = rellenaDatos.Cells["Rut profesional"].Value.ToString();
+			formProfesional.txtDvProfesional.Text = rellenaDatos.Cells["Dv rut"].Value.ToString();
+			formProfesional.txtTelefonoProfesional.Text = rellenaDatos.Cells["Telefono"].Value.ToString();
+			formProfesional.txtEmailProfesional.Text = rellenaDatos.Cells["Email"].Value.ToString();
 
 
-
-			if (!string.IsNullOrEmpty(rellenaDatos.Cells["idProfesional"].Value.ToString()))
+			if (!string.IsNullOrEmpty(rellenaDatos.Cells["ID_PROFESIONAL"].Value.ToString()))
 			{
 				formProfesional.btnCrearProfesional.Enabled = false;
 			}
@@ -427,17 +430,17 @@ namespace NoMasAccidentes.Vista.Administrador
 			FormUsuarioAdministrador formUsuario = new FormUsuarioAdministrador();
 			DataGridViewRow rellenaDatos = dgvUsuario.Rows[e.RowIndex];
 			formUsuario.txtIdUsuario.Enabled = false;
-			formUsuario.txtIdUsuario.Text = rellenaDatos.Cells["idUsuario"].Value.ToString();
-			formUsuario.txtPerfilUsuario.Text = rellenaDatos.Cells["descripcion"].Value.ToString();
-			formUsuario.txtNombreUsuario.Text = rellenaDatos.Cells["usuario"].Value.ToString();
-			formUsuario.txtContrasenaUsuario.Text = rellenaDatos.Cells["contrasena"].Value.ToString();
-			formUsuario.txtEstadoUsuario.Text = rellenaDatos.Cells["estado"].Value.ToString();
-			formUsuario.txtRutUsuario.Text = rellenaDatos.Cells["rutUsuario"].Value.ToString();
-			formUsuario.txtDvUsuario.Text = rellenaDatos.Cells["dvRut"].Value.ToString();
+			formUsuario.txtIdUsuario.Text = rellenaDatos.Cells["ID_USUARIO"].Value.ToString();
+			formUsuario.txtPerfilUsuario.Text = rellenaDatos.Cells["Perfil usuario"].Value.ToString();
+			formUsuario.txtNombreUsuario.Text = rellenaDatos.Cells["Nombre usuario"].Value.ToString();
+			formUsuario.txtContrasenaUsuario.Text = rellenaDatos.Cells["Contraseña Usuario"].Value.ToString();
+			formUsuario.txtEstadoUsuario.Text = rellenaDatos.Cells["Estado usuario"].Value.ToString();
+			formUsuario.txtRutUsuario.Text = rellenaDatos.Cells["Rut usuario"].Value.ToString();
+			formUsuario.txtDvUsuario.Text = rellenaDatos.Cells["Dv Usuario"].Value.ToString();
 
 
 
-			if (!string.IsNullOrEmpty(rellenaDatos.Cells["idUsuario"].Value.ToString()))
+			if (!string.IsNullOrEmpty(rellenaDatos.Cells["ID_USUARIO"].Value.ToString()))
 			{
 				formUsuario.btnCrearUsuario.Enabled = false;
 			}
@@ -481,17 +484,17 @@ namespace NoMasAccidentes.Vista.Administrador
 			formCurso.btnCrearCurso.Enabled = false;
 
 		
-			formCurso.txtidContrato1.Text = rellenaDatos.Cells["id_contrato"].Value.ToString();
+			formCurso.txtidContrato1.Text = rellenaDatos.Cells["Numero de contrato"].Value.ToString();
 			
 
 			//formCurso.txtidContrato1.Text = rellenaDatos.Cells["id_curso"].Value.ToString();
-			formCurso.txtIdCurso.Text = rellenaDatos.Cells["id_curso"].Value.ToString();
-			formCurso.txtCurso.Text = rellenaDatos.Cells["nombre_curso"].Value.ToString();
-			formCurso.dtmInicio.Value = Convert.ToDateTime(rellenaDatos.Cells["fecha_inicio"].Value.ToString());
-			formCurso.dtmTermino.Value = Convert.ToDateTime(rellenaDatos.Cells["fecha_terminmo"].Value.ToString());
+			formCurso.txtIdCurso.Text = rellenaDatos.Cells["Numero de curso"].Value.ToString();
+			formCurso.txtCurso.Text = rellenaDatos.Cells["Nombre de curso"].Value.ToString();
+			formCurso.dtmInicio.Value = Convert.ToDateTime(rellenaDatos.Cells["Inicio curso"].Value.ToString());
+			formCurso.dtmTermino.Value = Convert.ToDateTime(rellenaDatos.Cells["Termino curso"].Value.ToString());
 			//formCurso.txtidContrato1.Text = rellenaDatos.Cells["nombre"].Value.ToString();
-			formCurso.txtMateriales.Text = rellenaDatos.Cells["materiales"].Value.ToString();
-			formCurso.cmbUsuario.Text = rellenaDatos.Cells["nombre_curso"].Value.ToString();
+			formCurso.txtMateriales.Text = rellenaDatos.Cells["Materiales"].Value.ToString();
+			//formCurso.cmbUsuario.Text = rellenaDatos.Cells["nombre_curso"].Value.ToString();
 
 
 
@@ -531,9 +534,8 @@ namespace NoMasAccidentes.Vista.Administrador
 			formCurso.btnCrearVisita.Enabled = false;
 			
 			formCurso.txtVisitaId.Text = rellenaDatos.Cells["id_visita"].Value.ToString();
-			formCurso.dtmInicio.Value = Convert.ToDateTime(rellenaDatos.Cells["fecha_inicio"].Value.ToString());
-			formCurso.dtmTermino.Value = Convert.ToDateTime(rellenaDatos.Cells["fecha_termino"].Value.ToString());
-
+			formCurso.dtmInicio.Value = Convert.ToDateTime(rellenaDatos.Cells["Fecha inicio visita"].Value.ToString());
+			formCurso.dtmTermino.Value = Convert.ToDateTime(rellenaDatos.Cells["Fecha termino vitisa"].Value.ToString());
 
 
 
@@ -568,10 +570,10 @@ namespace NoMasAccidentes.Vista.Administrador
 			formCaso.txtIdCaso.Enabled = false;
 			formCaso.btnCrearCaso.Enabled = false;
 			
-			formCaso.txtIdContrato.Text = rellenaDatos.Cells["id_contrato"].Value.ToString();
-			formCaso.txtIdCaso.Text = rellenaDatos.Cells["id_caso"].Value.ToString();
-			formCaso.dtmCaso.Text = rellenaDatos.Cells["fecha_caso"].Value.ToString();
-			formCaso.txtDescripcion.Text = rellenaDatos.Cells["descripcion"].Value.ToString();
+			formCaso.txtIdContrato.Text = rellenaDatos.Cells["Numero de contrato"].Value.ToString();
+			formCaso.txtIdCaso.Text = rellenaDatos.Cells["Numero de caso"].Value.ToString();
+			formCaso.dtmCaso.Text = rellenaDatos.Cells["Fecha caso"].Value.ToString();
+			formCaso.txtDescripcion.Text = rellenaDatos.Cells["Descripcion caso"].Value.ToString();
 			
 			//formCaso.txtVisitaId.Text = rellenaDatos.Cells["id_visita"].Value.ToString();
 			//formCaso.dtmInicio.Value = Convert.ToDateTime(rellenaDatos.Cells["fecha_inicio"].Value.ToString());
@@ -609,12 +611,12 @@ namespace NoMasAccidentes.Vista.Administrador
 			DataGridViewRow rellenaDatos = dgvAccidentes.Rows[e.RowIndex];
 			btnCrearAccidente.Enabled = false;
 			formAccidente.txtIdAccidente.Enabled = false;
-			formAccidente.txtIdAccidente.Text = rellenaDatos.Cells["ID_ACCIDENTE"].Value.ToString();
-			formAccidente.txtIdContrato.Text = rellenaDatos.Cells["id_contrato"].Value.ToString();
+			formAccidente.txtIdAccidente.Text = rellenaDatos.Cells["Numero De accidente"].Value.ToString();
+			formAccidente.txtIdContrato.Text = rellenaDatos.Cells["Numero de contrato"].Value.ToString();
 
 			//formAccidente.txt.Text = rellenaDatos.Cells["ID_DETALLE_CONTRATO"].Value.ToString();
-			formAccidente.txtDetalleAccidente.Text = rellenaDatos.Cells["DETALLE_ACCIDENTE"].Value.ToString();
-			formAccidente.dtmAccidente.Text = rellenaDatos.Cells["FECHA_ACCIDENTE"].Value.ToString();
+			formAccidente.txtDetalleAccidente.Text = rellenaDatos.Cells["Detalle accidente"].Value.ToString();
+			formAccidente.dtmAccidente.Text = rellenaDatos.Cells["Fecha accidente"].Value.ToString();
 			//formCaso.txtIdContrato.Text = rellenaDatos.Cells["USUARIO"].Value.ToString();
 
 		//formCaso.txtVisitaId.Text = rellenaDatos.Cells["id_visita"].Value.ToString();

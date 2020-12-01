@@ -232,3 +232,5 @@ C:\Users\josep\source\repos\NoMasAccidentesEscritorio\NoMasAccidentes\obj\Debug\
 C:\Users\josep\source\repos\NoMasAccidentesEscritorio\NoMasAccidentes\obj\Debug\NoMasAccidentes.Vista.Administrador.FormCasoAdministrador.resources
 C:\Users\josep\source\repos\NoMasAccidentesEscritorio\NoMasAccidentes\obj\Debug\NoMasAccidentes.csprojAssemblyReference.cache
 C:\Users\josep\source\repos\NoMasAccidentesEscritorio\NoMasAccidentes\obj\Debug\NoMasAccidentes.Vista.Administrador.FormAccidenteAdministrador.resources
+C:\Users\josep\source\repos\NoMasAccidentesEscritorio\NoMasAccidentes\obj\Debug\NoMasAccidentes.Vista.Login.Login.resources
+C:\Users\josep\source\repos\NoMasAccidentesEscritorio\NoMasAccidentes\bin\Debug\IrisSkin2.dll

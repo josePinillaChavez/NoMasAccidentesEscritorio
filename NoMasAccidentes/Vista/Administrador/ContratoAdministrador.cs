@@ -22,7 +22,7 @@ namespace NoMasAccidentes.Vista.Administrador
 			dataProfesional = profesional.ListarProfesional();
 
 			cmbProfesional.DataSource = dataProfesional;
-			cmbProfesional.ValueMember = "idProfesional";
+			cmbProfesional.ValueMember = "id_Profesional";
 			cmbProfesional.DisplayMember = "nombre";
 
 

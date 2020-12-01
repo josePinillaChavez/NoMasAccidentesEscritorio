@@ -106,7 +106,7 @@
 			// txtCurso
 			// 
 			this.txtCurso.Location = new System.Drawing.Point(309, 54);
-			this.txtCurso.MaxLength = 9;
+			this.txtCurso.MaxLength = 30;
 			this.txtCurso.Name = "txtCurso";
 			this.txtCurso.Size = new System.Drawing.Size(100, 20);
 			this.txtCurso.TabIndex = 32;
@@ -114,7 +114,7 @@
 			// txtMateriales
 			// 
 			this.txtMateriales.Location = new System.Drawing.Point(547, 171);
-			this.txtMateriales.MaxLength = 20;
+			this.txtMateriales.MaxLength = 500;
 			this.txtMateriales.Name = "txtMateriales";
 			this.txtMateriales.Size = new System.Drawing.Size(100, 20);
 			this.txtMateriales.TabIndex = 28;

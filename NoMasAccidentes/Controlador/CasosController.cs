@@ -14,9 +14,11 @@ namespace NoMasAccidentes.Controlador
 {
 	class CasosController
 	{
+		UsuarioController usuario = new UsuarioController();
 
 		public DataTable listarCasos()
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			DataTable dt = new DataTable();
 
 
@@ -26,13 +28,14 @@ namespace NoMasAccidentes.Controlador
 
 
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 			using (Stream stream = response.GetResponseStream())
 			using (StreamReader reader = new StreamReader(stream))
 			{
 				var json = reader.ReadToEnd();
 
-				var a = JsonConvert.DeserializeObject<List<CasoModel>>(json);
+				//var a = JsonConvert.DeserializeObject<List<CasoModel>>(json);
 				dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
 			}
 
@@ -41,17 +44,17 @@ namespace NoMasAccidentes.Controlador
 			return dt;
 
 		}
-
+		
 		public bool crearCaso(int IN_ID_CONTRATO, int IN_ID_TIPO_CASO, DateTime IN_FECHA_CASO, string IN_RESUELTO)
 		{
-
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			bool ok = false;
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			urlBase = string.Format(urlBase, "api", "caso", "crear");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
-
-			string json = $"{{\"IN_ID_CONTRATO\":\"{IN_ID_CONTRATO}\",\"IN_ID_TIPO_CASO\":\"{IN_ID_TIPO_CASO}\"," +
-				$"\"IN_FECHA_CASO\":\"{IN_FECHA_CASO}\",\"IN_RESUELTO\":\"{IN_RESUELTO}\"}}";
+			request.Headers.Add("Authorization", "Bearer " + token);
+			string json = $"{{\"id_contrato\":\"{IN_ID_CONTRATO}\",\"id_tipo_caso\":\"{IN_ID_TIPO_CASO}\"," +
+				$"\"fecha_caso\":\"{IN_FECHA_CASO}\",\"resuelto\":\"{IN_RESUELTO}\"}}";
 
 			request.Method = "POST";
 			request.ContentType = "application/json";
@@ -90,16 +93,16 @@ namespace NoMasAccidentes.Controlador
 		}
 
 
-
 		public bool ActualizarCaso(int IN_ID_CASO, int IN_ID_CONTRATO, string IN_ID_TIPO_CASO, string IN_RESUELTO, DateTime IN_FECHA_CASO)
 		{
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			urlBase = string.Format(urlBase, "api", "caso", "actualizar");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 
-
-			string json = $"{{\"IN_ID_CASO\":\"{IN_ID_CASO}\",\"IN_ID_CONTRATO\":\"{IN_ID_CONTRATO}\"," +
-				$"\"IN_ID_TIPO_CASO\":\"{IN_ID_TIPO_CASO}\",\"IN_RESUELTO\":\"{IN_RESUELTO}\",\"IN_FECHA_CASO\":\"{IN_FECHA_CASO}\"}}";
+			string json = $"{{\"id_caso\":\"{IN_ID_CASO}\",\"id_contrato\":\"{IN_ID_CONTRATO}\"," +
+				$"\"id_tipo_caso\":\"{IN_ID_TIPO_CASO}\",\"resuelto\":\"{IN_RESUELTO}\",\"fecha_caso\":\"{IN_FECHA_CASO}\"}}";
 
 
 
@@ -145,14 +148,14 @@ namespace NoMasAccidentes.Controlador
 
 		public void eliminarCaso(int IN_ID_CASO)
 		{
-
+			string token = usuario.obtenertoken(LoginInfo.nombreUsuario, LoginInfo.contrasena, LoginInfo.perfil);
 			string urlBase = ConfigurationManager.AppSettings["UrlApi"].ToString();
 			urlBase = string.Format(urlBase, "api", "caso", "eliminar");
 			var request = (HttpWebRequest)WebRequest.Create(urlBase);
+			request.Headers.Add("Authorization", "Bearer " + token);
 
 
-
-			string json = $"{{\"IN_ID_CASO\":\"{IN_ID_CASO}\"}}";
+			string json = $"{{\"id_caso\":\"{IN_ID_CASO}\"}}";
 			request.Method = "POST";
 			request.ContentType = "application/json";
 			request.Accept = "application/json";
